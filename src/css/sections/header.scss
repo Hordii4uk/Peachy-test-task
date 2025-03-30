@@ -1,0 +1,12 @@
+[data-section-type="header"] {
+  [data-cart-view] {
+    @apply hidden;
+
+    &.active {
+      @apply block;
+    }
+  }
+  .swiper {
+    @apply rounded-b-lg;
+  }
+}

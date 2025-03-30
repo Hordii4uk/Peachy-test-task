@@ -1,0 +1,12 @@
+{{ 'AdornCondensedSans.static.otf' | asset_url | preload_tag: as: 'font' }}
+
+{% style %}
+  @font-face {
+    font-family: 'Adorn Condensed Sans';
+    font-display: swap;
+    font-weight: 400;
+    src: local('Adorn Condensed Sans'),
+      url("{{ 'AdornCondensedSans.static.otf' | asset_url }}")
+        format('opentype');
+  }
+{% endstyle %}

@@ -1,0 +1,50 @@
+{
+  "name": "peachy-candidate",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:iPhenan/peachy-candidate.git",
+  "author": "Denis Dotsenko <iphenan.work@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "run-p -sr shopify:serve:sync webpack:watch",
+    "deploy": "run-s webpack:build && cd shopify && shopify theme push",
+    "webpack:watch": "cross-env NODE_ENV=development BROWSERSLIST_ENV=development BROWSERSLIST_CONFIG=./.browserslistrc webpack --config ./webpack.dev.js --watch --progress",
+    "webpack:build": "cross-env NODE_ENV=production BROWSERSLIST_ENV=production BROWSERSLIST_CONFIG=./.browserslistrc webpack --config ./webpack.prod.js --progress",
+    "shopify:serve:sync": "cd shopify && shopify theme dev -e dev"
+  },
+  "dependencies": {
+    "@shopify/theme-sections": "^4.1.1",
+    "swiper": "^9.4.0",
+    "tailwindcss": "^3.0.24"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.17.10",
+    "@babel/plugin-transform-runtime": "^7.17.10",
+    "@babel/preset-env": "^7.17.10",
+    "autoprefixer": "^10.4.7",
+    "babel-loader": "^9.1.2",
+    "clean-webpack-plugin": "^4.0.0",
+    "cross-env": "^7.0.3",
+    "css-loader": "^6.7.1",
+    "css-minimizer-webpack-plugin": "^5.0.0",
+    "eslint": "^8.14.0",
+    "eslint-plugin-vue": "^9.14.1",
+    "eslint-webpack-plugin": "^4.0.1",
+    "mini-css-extract-plugin": "^2.6.0",
+    "npm-run-all": "^4.1.5",
+    "postcss": "^8.4.13",
+    "postcss-html": "^1.4.1",
+    "postcss-import": "^15.1.0",
+    "postcss-loader": "^7.3.3",
+    "sass": "^1.51.0",
+    "sass-loader": "^13.3.2",
+    "source-map": "^0.7.3",
+    "stylelint": "^15.7.0",
+    "stylelint-config-recommended": "^12.0.0",
+    "stylelint-webpack-plugin": "^4.1.1",
+    "url-loader": "^4.1.1",
+    "webpack": "^5.72.0",
+    "webpack-cli": "^5.1.4",
+    "webpack-merge": "^5.8.0"
+  }
+}

@@ -1,0 +1,27 @@
+<form
+  action="/cart/add"
+  method="post"
+  data-cart-submit
+>
+  <variant-swatch>
+    {% if product.variants.size > 1 %}
+      <select name="id">
+        {% for variant in product.variants %}
+          <option
+            value="{{ variant.id }}"
+          >
+            {{ variant.title }}
+          </option>
+        {% endfor %}
+      </select>
+    {% else %}
+      <input
+        type="hidden"
+        name="id"
+        value="{{ product.selected_or_first_available_variant.id }}"
+      >
+    {% endif %}
+
+    <button type="submit">add to cart</button>
+  </variant-swatch>
+</form>

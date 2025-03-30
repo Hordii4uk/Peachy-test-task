@@ -1,0 +1,18 @@
+{
+  "sections": {
+    "main-index": {
+      "type": "main-index",
+      "settings": {
+      }
+    },
+    "1d2f5b0d-e932-4cac-9a2d-4c348a75e38e": {
+      "type": "featured-products",
+      "settings": {
+      }
+    }
+  },
+  "order": [
+    "main-index",
+    "1d2f5b0d-e932-4cac-9a2d-4c348a75e38e"
+  ]
+}

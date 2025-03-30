@@ -1,0 +1,31 @@
+{
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[liquid]": {
+    "editor.defaultFormatter": "Shopify.theme-check-vscode"
+  },
+  "files.associations": {
+    "*.liquid": "liquid",
+    "*.scss.liquid": "scss",
+    "*.js.liquid": "javascript",
+    "*.svg": "html"
+  },
+  "emmet.includeLanguages": {
+    "liquid": "html",
+    "javascript": "javascriptreact"
+  },
+  "shopifyLiquid.disableWindowsWarning": true,
+  "shopifyLiquid.formatterDevPreview": true,
+  "scss.lint.unknownAtRules": "ignore",
+  "css.lint.unknownAtRules": "ignore"
+}
