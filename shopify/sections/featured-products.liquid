@@ -1,19 +1,74 @@
 <div
+  class="featured-products py-6"
   data-section-type="featured-products"
   data-section-id="{{ section.id }}"
 >
-  <!-- Slider main container -->
-  <div class="swiper">
-    <!-- Additional required wrapper -->
-    <div class="swiper-wrapper">
-      <!-- Slides -->
-      <div class="swiper-slide">Slide 1</div>
-      <div class="swiper-slide">Slide 2</div>
-      <div class="swiper-slide">Slide 3</div>
+  {% assign collection = section.settings.collection %}
+
+  {% unless collection == blank %}
+    {% comment %} py-6 pt-14 {% endcomment %}
+    <h2 class="featured-products_heading flex justify-center pt-14 py-6">
+      {% if collection.title contains 'Sellers' %}
+        {% assign custom_title = 'Sellers' %}
+        <span>{{ collection.title | split: 'Sellers' | first }}</span>
+        <span>{{ custom_title | prepend: '&nbsp;' }}</span>
+      {% else %}
+        {{ collection.title }}
+      {% endif %}
+    </h2>
+
+    <!-- Slider main container -->
+    <div class="swiper">
+      <!-- Additional required wrapper -->
+      <div class="swiper-wrapper md:grid lg:grid-cols-4 md:grid-cols-3 md:gap-8">
+        <!-- Slides -->
+        {% for product in collection.products %}
+          {% comment %} w-fit mx-auto {% endcomment %}
+          <div class="swiper-slide">
+            <!-- product card -->
+            <div class="featured-products_card p-4 overflow-hidden">
+              <a href="{{ product.url }}">
+                {% assign image = product.featured_image | default: product.images.first %}
+                <img
+                  class="object-cover w-full"
+                  src="{{ image.src | image_url: width: 270 }}"
+                  srcset="
+                    {% if image.width > 640 %}{{ image.src | image_url: width: 640 }} 640w,{% endif %}
+                    {% if image.width > 768 %}{{ image.src | image_url: width: 768 }} 768w,{% endif %}
+                    {% if image.width > 1024 %}{{ image.src | image_url: width: 1024 }} 1024w,{% endif %}
+                    {% if image.width > 1280 %}{{ image.src | image_url: width: 1280 }} 1280w,{% endif %}"
+                  sizes="(min-width: 1280px) 400px, (min-width: 1024px) 350px, (min-width: 768px) 45vw, 90vw"
+                  alt="{{ image.alt | escape }}"
+                  width="{{ image.width }}"
+                  height="{{ image.height }}"
+                  loading="lazy"
+                />
+                <noscript><img src="{{ image | image_url: width: 270 }}" width="{{ image.width }}" height="{{ image.height }}" alt="{{ image.alt | escape }}"></noscript>
+
+                <div class="featured-products_card-title text-center mt-4 px-6">{{ product.title | escape }}</div>
+              </a>
+
+              <div class="flex gap-4 mt-4">
+                <form action="/cart/add" method="post" data-cart-submit class="w-full">
+                  <select name="id" class="w-full py-2">
+                    {% for variant in product.variants %}
+                      <option value="{{ variant.id }}" data-price="{{ variant.price | money }}">{{ variant.title }}</option>
+                    {% endfor %}
+                  </select>
+                  <button type="submit" class="w-full flex justify-center items-center font-bold cursor-pointer mt-4 p-4">
+                    <span class="option-price">{{ product.selected_or_first_available_variant.price | money_without_trailing_zeros }}</span>
+                    <span class="">&nbsp; | &nbsp;Add to Cart</span>
+                  </button>
+              </form>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+      <!-- If we need pagination -->
+      <div class="swiper-pagination"></div>
     </div>
-    <!-- If we need pagination -->
-    <div class="swiper-pagination"></div>
-  </div>
+  {% endunless %}
 </div>
 
 {% schema %}
@@ -22,7 +77,17 @@
     "tag": "section",
     "presets": [
       {
-        "name": "Featured Products"
+        "name": "Featured Products",
+        "settings": {
+          "collection": "frontpage"
+        }
+      }
+    ],
+    "settings": [
+      {
+        "type": "collection",
+        "id": "collection",
+        "label": "Collection products"
       }
     ]
   }
