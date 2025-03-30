@@ -70,7 +70,7 @@
     "apartment": "Apartment, suite, etc.",
     "city": "City",
     "country": "Country",
-    "zip_code": "Postal/Zip Code",
+    "zip_code": "Postal\/Zip Code",
     "phone": "Phone",
     "message": "Message"
   },

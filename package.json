@@ -6,7 +6,7 @@
   "author": "Denis Dotsenko <iphenan.work@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "run-p -sr shopify:serve:sync webpack:watch",
+    "start": "run-p -sr webpack:watch",
     "deploy": "run-s webpack:build && cd shopify && shopify theme push",
     "webpack:watch": "cross-env NODE_ENV=development BROWSERSLIST_ENV=development BROWSERSLIST_CONFIG=./.browserslistrc webpack --config ./webpack.dev.js --watch --progress",
     "webpack:build": "cross-env NODE_ENV=production BROWSERSLIST_ENV=production BROWSERSLIST_CONFIG=./.browserslistrc webpack --config ./webpack.prod.js --progress",

@@ -1,4 +1,4 @@
 [environments.dev]
-store = ""
+store = "peachy-task"
 path = "."
 theme-editor-sync = true
